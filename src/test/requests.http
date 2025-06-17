@@ -1,0 +1,9 @@
+GET http://localhost:8080/authorize?user=admin&password=WrongPassword_123
+
+GET http://localhost:8080/authorize?user=hacker&password=ValidPassword_123
+
+GET http://localhost:8080/authorize?user=admin&password=ValidPassword_123
+
+GET http://localhost:8080/authorize?user=user&password=ValidPassword_123
+
+GET http://localhost:8080/authorize?user=guest&password=ValidPassword_123
