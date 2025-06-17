@@ -9,6 +9,10 @@ import java.util.List;
 public class UserRepository {
     public List<Authorities> getUserAuthorities(String user, String password) {
 
+        if (!"ValidPassword_123".equals(password)) {
+            throw new InvalidCredentials("Invalid credentials");
+        }
+
         switch (user) {
             case "admin" -> {
                 return List.of(new Authorities[]{Authorities.READ, Authorities.WRITE, Authorities.DELETE});
