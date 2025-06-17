@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import ru.netology.HW_REST.repository.Authorities;
 import ru.netology.HW_REST.repository.InvalidCredentials;
 import ru.netology.HW_REST.repository.UnauthorizedUser;
@@ -39,6 +40,11 @@ public class AuthorizationController {
     @ExceptionHandler(InvalidCredentials.class)
     public ResponseEntity<String> invalidCredentialsHandler(InvalidCredentials exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+    }
+
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ResponseEntity<String> handlerMethodValidationExceptionHandler(HandlerMethodValidationException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getReason());
     }
 
     @ExceptionHandler(UnauthorizedUser.class)
